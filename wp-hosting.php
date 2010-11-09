@@ -8,4 +8,7 @@ Author: Fabio Alessandro Locati
 Author URI: http://grimp.eu
 License: GPL2
 */
+
+register_activation_hook('wp-hosting_setup.php', 'wp-hosting_setup');
+
 ?>
