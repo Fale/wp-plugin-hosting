@@ -26,8 +26,9 @@ function wp_hosting_setup() {
     	);";
 
     require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
-    dbDelta($sql);
- 
+    $result = dbDelta($sql);
+    var_dump($result);
+
     add_option("wp_hosting_db_version", $wp_hosting_db_version);
   }
 }
