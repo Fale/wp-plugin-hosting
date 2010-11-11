@@ -13,4 +13,14 @@ function wp_hosting_options() {
   echo '</div>';
 }
 
+function wp_hosting_add() {
+  if (!current_user_can('manage_options'))  {
+    wp_die( __('You do not have sufficient permissions to access this page.') );
+  }
+  echo '<div class="wrap">';
+  echo '<h1>Add A new plan:</h1>';
+  echo '<p></p>';
+  echo '</div>';
+}
+
 ?>
