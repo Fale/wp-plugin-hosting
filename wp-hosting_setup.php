@@ -3,7 +3,7 @@
 global $wp_hosting_db_version;
 $wp_hosting_db_version = "0.1";
 
-function wp-hosting_setup() {
+function wp_hosting_setup() {
   global $wpdb;
   global $wp_hosting_db_version;
 
