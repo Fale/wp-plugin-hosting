@@ -22,12 +22,13 @@ function wp_hosting_setup() {
 	    db smallint NOT NULL,
 	    yearly decimal(8,2) unsigned NOT NULL,
 	    setup decimal(8,2) unsigned NOT NULL,
-  	  UNIQUE KEY id (id)
+  	  UNIQUE KEY (id)
     	);";
 
     require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
-    $result = dbDelta($sql);
+    $result = $wpdb->query($sql);
     var_dump($result);
+    $wpdb->print_error();
 
     add_option("wp_hosting_db_version", $wp_hosting_db_version);
   }

@@ -11,7 +11,8 @@ License: GPL2
 
 //register_activation_hook('wp-hosting_setup.php', 'wp_hosting_setup');
 
-register_activation_hook('wp-hosting_setup.php', 'wp_hosting_setup');
+include_once 'wp-hosting_setup.php';
+wp_hosting_setup();
 
 if(is_admin()){
 	include_once 'wp-hosting_admin.php';
