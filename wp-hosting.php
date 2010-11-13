@@ -20,4 +20,25 @@ if(is_admin()){
 }else{
 }
 
+function wp_hosting_plan($id)
+{
+  global $wpdb;
+
+  $out = "<table>";
+  $out.= "  <tr>";
+  $out.= "    <th>Opzione</th>";
+  $out.= "    <th>Piano " . $wpdb->get_var("SELECT name FROM asd WHERE id = $id") . "</th>";
+  $out.= "  </tr>";
+  $out.= "  <tr>";
+  $out.= "    <td>Nome</td>";
+  $out.= "    <td>" . $wpdb->get_var("SELECT name FROM asd WHERE id = $id") . "</td>";
+  $out.= "  </tr>";
+  $out.= "  <tr>";
+  $out.= "    <td>Hard Disk</td>";
+  $out.= "    <td>" . $wpdb->get_var("SELECT hd FROM asd WHERE id = $id") . "</td>";
+  $out.= "  </tr>";
+  $out.="</table>";
+
+  return $out;
+}
 ?>
