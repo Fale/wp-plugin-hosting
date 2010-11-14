@@ -39,7 +39,8 @@ function grimp_hosting_values($value)
 function grimp_hosting_plan($id)
 {
   global $wpdb;
-  $plan = $wpdb->get_row("SELECT * FROM asd WHERE id = $id");
+  $table_name = $wpdb->prefix . "hosting_plans";
+  $plan = $wpdb->get_row("SELECT * FROM $table_name WHERE id = $id");
 
   $out = "<table>";
   $out.= "  <tr>";
@@ -100,9 +101,10 @@ function grimp_hosting_plan($id)
 function grimp_hosting_comparison($ids)
 {
   global $wpdb;
+  $table_name = $wpdb->prefix . "hosting_plans";
   $plans = array();
   foreach($ids as $i => $id)
-    $plans[] = $wpdb->get_row("SELECT * FROM asd WHERE id = $id");
+    $plans[] = $wpdb->get_row("SELECT * FROM $table_name WHERE id = $id");
 
   $out = "<table>";
   $out.= "  <tr>";
