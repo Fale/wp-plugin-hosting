@@ -1,11 +1,11 @@
 <?php
 
-global $wp_hosting_db_version;
-$wp_hosting_db_version = "0.1";
+global $grimp_hosting_db_version;
+$grimp_hosting_db_version = "0.1";
 
-function wp_hosting_setup() {
+function grimp_hosting_setup() {
   global $wpdb;
-  global $wp_hosting_db_version;
+  global $grimp_hosting_db_version;
 
   $table_name = $wpdb->prefix . "hosting_plans";
   if($wpdb->get_var("show tables like '$table_name'") != $table_name) {
@@ -30,7 +30,7 @@ function wp_hosting_setup() {
     var_dump($result);
     $wpdb->print_error();
 
-    add_option("wp_hosting_db_version", $wp_hosting_db_version);
+    add_option("grimp_hosting_db_version", $grimp_hosting_db_version);
   }
 }
 

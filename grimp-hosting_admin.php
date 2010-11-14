@@ -1,11 +1,11 @@
 <?php
 
-function wp_hosting_menu() {
-  add_menu_page(__('WP Hosting','wp-hosting'), __('WP Hosting','wp-hosting'), 'manage_options', 'wp-hosting-options', 'wp_hosting_options');
-  add_submenu_page( 'wp-hosting-options', __('Add Hosting plan','wp-hosting'), __('Add','wp-hosting'), 'manage_options', 'wp-hosting-add', 'wp_hosting_add');
+function grimp_hosting_menu() {
+  add_menu_page(__('Grimp Hosting','grimp-hosting'), __('Grimp Hosting','grimp-hosting'), 'manage_options', 'grimp-hosting-options', 'grimp_hosting_options');
+  add_submenu_page( 'grimp-hosting-options', __('Add Hosting plan','grimp-hosting'), __('Add','grimp-hosting'), 'manage_options', 'grimp-hosting-add', 'grimp_hosting_add');
 }
 
-function wp_hosting_options() {
+function grimp_hosting_options() {
   if (!current_user_can('manage_options'))  {
     wp_die( __('You do not have sufficient permissions to access this page.') );
   }
@@ -20,7 +20,7 @@ function wp_hosting_options() {
   echo '</div>';
 }
 
-function wp_hosting_add() {
+function grimp_hosting_add() {
   if (!current_user_can('manage_options'))  {
     wp_die( __('You do not have sufficient permissions to access this page.') );
   }
