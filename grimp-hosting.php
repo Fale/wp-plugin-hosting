@@ -96,4 +96,79 @@ function grimp_hosting_plan($id)
 
   return $out;
 }
+
+function grimp_hosting_comparison($ids)
+{
+  global $wpdb;
+  $plans = array();
+  foreach($ids as $i => $id)
+    $plans[] = $wpdb->get_row("SELECT * FROM asd WHERE id = $id");
+
+  $out = "<table>";
+  $out.= "  <tr>";
+  $out.= "    <th>" . __("Option","grimp-hosting") . "</th>";
+  foreach($plans as $i => $plan)
+    $out.= "    <th>" . __("Plan","grimp-hosting") . " $plan->name</th>";
+  $out.= "  </tr>";
+  $out.= "  <tr>";
+  $out.= "    <td>" . __("Name","grimp-hosting") . "</td>";
+  foreach($plans as $i => $plan)
+    $out.= "    <td>$plan->name</td>";
+  $out.= "  </tr>";
+  $out.= "  <tr>";
+  $out.= "    <td>" . __("Hard Disk Space","grimp-hosting") . "</td>";
+  foreach($plans as $i => $plan)
+    $out.= "    <td>$plan->hd</td>";
+  $out.= "  </tr>";
+  $out.= "  <tr>";
+  $out.= "    <td>" . __("Transfert","grimp-hosting") . "</td>";
+  foreach($plans as $i => $plan)
+    $out.= "    <td>" . number_format(grimp_hotsing_mb2gb($plan->bw),2) . "</td>";
+  $out.= "  </tr>";
+  $out.= "  <tr>";
+  $out.= "    <td>" . __("Domains","grimp-hosting") . "</td>";
+  foreach($plans as $i => $plan)
+    $out.= "    <td>$plan->domains</td>";
+  $out.= "  </tr>";
+  $out.= "  <tr>";
+  $out.= "    <td>" . __("Add-ons domains","grimp-hosting") . "*</td>";
+  foreach($plans as $i => $plan)
+    $out.= "    <td>" . grimp_hosting_values($plan->addons) . "</td>";
+  $out.= "  </tr>";
+  $out.= "  <tr>";
+  $out.= "    <td>" . __("Subdomains","grimp-hosting") . "</td>";
+  foreach($plans as $i => $plan)
+    $out.= "    <td>" . grimp_hosting_values($plan->subdomains) . "</td>";
+  $out.= "  </tr>";
+  $out.= "  <tr>";
+  $out.= "    <td>" . __("Email adresses","grimp-hosting") . "</td>";
+  foreach($plans as $i => $plan)
+    $out.= "    <td>" . grimp_hosting_values($plan->emails) . "</td>";
+  $out.= "  </tr>";
+  $out.= "  <tr>";
+  $out.= "    <td>" . __("FTP Accounts","grimp-hosting") . "</td>";
+  foreach($plans as $i => $plan)
+    $out.= "    <td>" . grimp_hosting_values($plan->ftps) . "</td>";
+  $out.= "  </tr>";
+  $out.= "  <tr>";
+  $out.= "    <td>" . __("MySQL Database","grimp-hosting") . "</td>";
+  foreach($plans as $i => $plan)
+    $out.= "    <td>" . grimp_hosting_values($plan->db) . "</td>";
+  $out.= "  </tr>";
+  $out.= "  <tr>";
+  $out.= "    <td>" . __("Yearly fees","grimp-hosting") . "</td>";
+  foreach($plans as $i => $plan)
+    $out.= "    <td>$plan->yearly</td>";
+  $out.= "  </tr>";
+  $out.= "  <tr>";
+  $out.= "    <td>" . __("Setup fees","grimp-hosting") . "**</td>";
+  foreach($plans as $i => $plan)
+    $out.= "    <td>$plan->setup</td>";
+  $out.= "  </tr>";
+  $out.= "</table>";
+  $out.= "* I domini non sono inclusi, è solo inclusa la possibilità di aggiungerli<br />";
+  $out.= "** Una tantum";
+
+  return $out;
+}
 ?>
