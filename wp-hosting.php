@@ -3,6 +3,7 @@
 Plugin Name: WP-Hosting
 Plugin URI: http://git.grimp.eu/projects/wp-hosting
 Description: This plugin will allow you to manage hosting plans, hosting comparison etc.
+Dependencies: grimp-php.php
 Version: 0.1
 Author: Fabio Alessandro Locati
 Author URI: http://grimp.eu
@@ -23,19 +24,20 @@ if(is_admin()){
 function wp_hosting_plan($id)
 {
   global $wpdb;
+  $plan = $wpdb->get_row("SELECT * FROM asd WHERE id = $id");
 
   $out = "<table>";
   $out.= "  <tr>";
   $out.= "    <th>Opzione</th>";
-  $out.= "    <th>Piano " . $wpdb->get_var("SELECT name FROM asd WHERE id = $id") . "</th>";
+  $out.= "    <th>Piano $plan->name</th>";
   $out.= "  </tr>";
   $out.= "  <tr>";
   $out.= "    <td>Nome</td>";
-  $out.= "    <td>" . $wpdb->get_var("SELECT name FROM asd WHERE id = $id") . "</td>";
+  $out.= "    <td>$plan->name</td>";
   $out.= "  </tr>";
   $out.= "  <tr>";
   $out.= "    <td>Hard Disk</td>";
-  $out.= "    <td>" . $wpdb->get_var("SELECT hd FROM asd WHERE id = $id") . "</td>";
+  $out.= "    <td>$plan->hd</td>";
   $out.= "  </tr>";
   $out.="</table>";
 
