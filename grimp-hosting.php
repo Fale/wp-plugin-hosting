@@ -23,7 +23,7 @@ if(is_admin()){
 
 function grimp_hotsing_mb2gb($value)
 {
-  return $value/1024;
+  return number_format($value/1024,2);
 }
 
 function grimp_hosting_values($value)
@@ -68,7 +68,7 @@ function grimp_hosting_comparison($ids)
   $out.= "  <tr>";
   $out.= "    <td>" . __("Transfert","grimp-hosting") . "</td>";
   foreach($plans as $i => $plan)
-    $out.= "    <td>" . number_format(grimp_hotsing_mb2gb($plan->bw),2) . "</td>";
+    $out.= "    <td>" . grimp_hotsing_mb2gb($plan->bw) . "</td>";
   $out.= "  </tr>";
   $out.= "  <tr>";
   $out.= "    <td>" . __("Domains","grimp-hosting") . "</td>";
