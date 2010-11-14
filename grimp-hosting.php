@@ -21,6 +21,16 @@ if(is_admin()){
 }else{
 }
 
+function grimp_hosting_values($value)
+{
+  if($value > 0)
+    return $value;
+  if($value == 0 )
+    return __("unlimited","grimp-hosting");
+  if($value == -1)
+    return "-";
+}
+
 function grimp_hosting_plan($id)
 {
   global $wpdb;
@@ -49,23 +59,23 @@ function grimp_hosting_plan($id)
   $out.= "  </tr>";
   $out.= "  <tr>";
   $out.= "    <td>Domini aggiuntivi*</td>";
-  $out.= "    <td>$plan->addons</td>";
+  $out.= "    <td>" . grimp_hosting_values($plan->addons) . "</td>";
   $out.= "  </tr>";
   $out.= "  <tr>";
   $out.= "    <td>Sottodomini</td>";
-  $out.= "    <td>$plan->subdomains</td>";
+  $out.= "    <td>" . grimp_hosting_values($plan->subdomains) . "</td>";
   $out.= "  </tr>";
   $out.= "  <tr>";
   $out.= "    <td>Indirizzi e-mail</td>";
-  $out.= "    <td>$plan->emails</td>";
+  $out.= "    <td>" . grimp_hosting_values($plan->emails) . "</td>";
   $out.= "  </tr>";
   $out.= "  <tr>";
   $out.= "    <td>Accoount FTP</td>";
-  $out.= "    <td>$plan->ftps</td>";
+  $out.= "    <td>" . grimp_hosting_values($plan->ftps) . "</td>";
   $out.= "  </tr>";
   $out.= "  <tr>";
   $out.= "    <td>Database MySQL</td>";
-  $out.= "    <td>$plan->db</td>";
+  $out.= "    <td>" . grimp_hosting_values($plan->db) . "</td>";
   $out.= "  </tr>";
   $out.= "  <tr>";
   $out.= "    <td>Quota annuale</td>";
