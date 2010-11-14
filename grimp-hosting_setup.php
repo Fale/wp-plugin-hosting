@@ -26,9 +26,7 @@ function grimp_hosting_setup() {
     	);";
 
     require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
-    $result = $wpdb->query($sql);
-    var_dump($result);
-    $wpdb->print_error();
+    dbDelta($sql);
 
     add_option("grimp_hosting_db_version", $grimp_hosting_db_version);
   }
